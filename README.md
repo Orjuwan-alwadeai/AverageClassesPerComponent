@@ -1,0 +1,2 @@
+# AverageClassesPerComponent
+AverageClassesPerComponent Measure extends HawkQueryMeasure
