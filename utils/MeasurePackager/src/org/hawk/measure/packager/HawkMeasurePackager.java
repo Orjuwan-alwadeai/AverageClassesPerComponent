@@ -9,6 +9,7 @@
  *     Orjuwan Al-Wadeai - Hawk Query SMMM Measure Implementation
  ******************************************************************************/
 
+package org.hawk.measure.packager;
 
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -27,8 +28,29 @@ public class HawkMeasurePackager {
 		String libPath = reader.nextLine(); // Scans the next token of the input as an int.
 		System.out.println(">> Enter ZIP file location: ");
 		String zipPath = reader.nextLine(); // Scans the next token of the input as an int.
-
+		System.out.println(">> Enter Scope Properties to add to default (comma seperated): ");
+		String scopeProperties = reader.nextLine(); // Scans the next token of the input as an int.
+		System.out.println(">> Enter Scope Properties to remove from default (comma seperated): ");
+		String toRemoveScopeProperties = reader.nextLine(); // Scans the next token of the input as an int.
+		
+		
 		HawkQuerySMMMMeasure measure = new HawkQuerySMMMMeasure();
+
+		if(scopeProperties != null && !scopeProperties.isEmpty()){
+			String[] list = scopeProperties.split(",");
+			for(int i = 0; i < list.length; i++) {
+				String prop = list[i].trim();
+				measure.addScopeProperty(prop, "", "");
+			}
+		}
+		
+		if(toRemoveScopeProperties != null && !toRemoveScopeProperties.isEmpty()){
+			String[] list = toRemoveScopeProperties.split(",");
+			for(int i = 0; i < list.length; i++) {
+				String prop = list[i].trim();
+				measure.removeScopeProperty(prop);
+			}
+		}
 		
 		try {
 			MeasurePackager.packageMeasure(Paths.get(jarPath),
