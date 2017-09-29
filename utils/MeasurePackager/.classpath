@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/yaser And Orjuwan/.m2/repository/org/hawk/measure/impl/HawkQueryMeasure/0.0.1/HawkQueryMeasure-0.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/yaser And Orjuwan/.m2/repository/org/measure/smmmeasure/api/SMMMeasureApi/0.2.08/SMMMeasureApi-0.2.08.jar"/>
+	<classpathentry kind="lib" path="libs/HawkQueryMeasure-0.0.1.jar"/>
+	<classpathentry kind="lib" path="libs/SMMMeasureApi-0.2.08.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
