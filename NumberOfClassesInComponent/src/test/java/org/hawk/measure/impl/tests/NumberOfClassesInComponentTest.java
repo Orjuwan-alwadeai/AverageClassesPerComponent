@@ -23,7 +23,7 @@ import org.measure.smm.measure.defaultimpl.measurements.IntegerMeasurement;
 
 
 public class NumberOfClassesInComponentTest {
-	final static String serverUrl = "http://75946948.ngrok.io/thrift/hawk/tuple";
+	final static String serverUrl = "http://localhost:8080/thrift/hawk/tuple";
 	final static String instanceName = "instance_1";
 	final static String componentName = "AComponent";
 
