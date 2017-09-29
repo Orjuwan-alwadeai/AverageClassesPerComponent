@@ -1,2 +1,2 @@
-# AverageClassesPerComponent
-AverageClassesPerComponent Measure extends HawkQueryMeasure
+# Hawk-Query-Measure-Examples
+Example measures that extend HawkQueryMeasure
