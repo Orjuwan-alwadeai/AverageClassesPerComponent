@@ -27,8 +27,8 @@ public class AverageSubcomponentsPerComponentTest {
 	final static String instanceName = "instance_1";
 
 	@Test
-	public void testAverageNumberOfClassesInAComponent() throws Exception {
-		System.out.println("\n\n testAverageNumberOfClassesInAComponent *****");
+	public void testAverageNumberOfSubcomponentInAComponent() throws Exception {
+		System.out.println("\n\n testAverageNumberOfSubcomponentInAComponent *****");
 		AverageSubcomponentsPerComponent measure = new AverageSubcomponentsPerComponent();
 
 		measure.getProperties().put(HawkQueryConstants.SERVER_URL, serverUrl);

@@ -48,12 +48,13 @@ public class AverageSubcomponentsPerComponent extends HawkQueryMeasure  {
 	// query size reduced to be accepted by MEASURE platform
 	// longer string was causing org.hibernate.exception.DataException
 	private String queryString = "var cs = Component.all;"
-			+ "if(cs.size() = 0) return 0;"
+			//+ "if(cs.size() = 0) return 0;"
 			+ "var n  = 0;"
 			+ "for(c in cs) "
 			+ "{"
 			+ "n = n + f(c);"
 			+ "}"
+			+"if(n=0) return 0;"
 			+ "n = n/cs.size();"
 			+ "return n;"
 			+ "operation f(c) {\n"
@@ -63,15 +64,17 @@ public class AverageSubcomponentsPerComponent extends HawkQueryMeasure  {
 			+ "if(ch.isTypeOf(Component)) {\n"
 			+ "n = n + 1;\n"
 			+ "} else if(ch.hasProperty('hawkChildren')) {\n"
-			+ "if(ch.hawkChildren.size() > 0) {\n"
+			//+ "if(ch.hawkChildren.size() > 0) {\n"
 			+ "n = n + f(ch);\n"
-			+ "}\n"
+			//+ "}\n"
 			+ "}\n"
 			+ "}\n"
 			+ "}\n"
 			+ "return n;\n"
 			+ "}\n";
 	
+	
+
 	public List<IMeasurement> getMeasurement() throws Exception {
 		setQuery();
 		return super.getMeasurement();
