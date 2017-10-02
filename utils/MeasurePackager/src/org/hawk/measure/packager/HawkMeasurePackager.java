@@ -21,47 +21,68 @@ public class HawkMeasurePackager {
 
 	public static void main(String[] args) {
 		
-		Scanner reader = new Scanner(System.in);  // Reading from System.in
-		System.out.println(">> Enter JAR path: ");
-		String jarPath = reader.nextLine(); // Scans the next token of the input as an int.
-		System.out.println(">> Enter LIB folder path: ");
-		String libPath = reader.nextLine(); // Scans the next token of the input as an int.
-		System.out.println(">> Enter ZIP file location: ");
-		String zipPath = reader.nextLine(); // Scans the next token of the input as an int.
-		System.out.println(">> Enter Scope Properties to add to default (comma seperated): ");
-		String scopeProperties = reader.nextLine(); // Scans the next token of the input as an int.
-		System.out.println(">> Enter Scope Properties to remove from default (comma seperated): ");
-		String toRemoveScopeProperties = reader.nextLine(); // Scans the next token of the input as an int.
-		
-		
-		HawkQuerySMMMMeasure measure = new HawkQuerySMMMMeasure();
+		Boolean doContinue = true; 
 
-		if(scopeProperties != null && !scopeProperties.isEmpty()){
-			String[] list = scopeProperties.split(",");
-			for(int i = 0; i < list.length; i++) {
-				String prop = list[i].trim();
-				measure.addScopeProperty(prop, "", "");
-			}
-		}
-		
-		if(toRemoveScopeProperties != null && !toRemoveScopeProperties.isEmpty()){
-			String[] list = toRemoveScopeProperties.split(",");
-			for(int i = 0; i < list.length; i++) {
-				String prop = list[i].trim();
-				measure.removeScopeProperty(prop);
-			}
-		}
-		
-		try {
-			MeasurePackager.packageMeasure(Paths.get(jarPath),
-					Paths.get(libPath),
-					measure,
-					Paths.get(zipPath));
+		while(doContinue) {
+			Scanner reader = new Scanner(System.in);  // Reading from System.in
+
+			
+			System.out.println(">> Enter Measure Name: ");
+			String name = reader.nextLine(); // Scans the next token of the input as an int.
+			System.out.println(">> Enter Measaure Version: ");
+			String version = reader.nextLine(); 
+			System.out.println(">> Enter target path: ");
+			String targetPath = reader.nextLine(); 
+			System.out.println(">> Enter Scope Properties to add to default (comma seperated): ");
+			String scopeProperties = reader.nextLine(); 
+			System.out.println(">> Enter Scope Properties to remove from default (comma seperated): ");
+			String toRemoveScopeProperties = reader.nextLine(); 
 			
 			
-			System.out.println("Successfully Created " + zipPath);
-		} catch (Exception e) {
-			e.printStackTrace();
+			HawkQuerySMMMMeasure measure = new HawkQuerySMMMMeasure();
+	
+			measure.setName(name);
+			
+			if(scopeProperties != null && !scopeProperties.isEmpty()){
+				String[] list = scopeProperties.split(",");
+				for(int i = 0; i < list.length; i++) {
+					String prop = list[i].trim();
+					measure.addScopeProperty(prop, "", "");
+				}
+			}
+			
+			if(toRemoveScopeProperties != null && !toRemoveScopeProperties.isEmpty()){
+				String[] list = toRemoveScopeProperties.split(",");
+				for(int i = 0; i < list.length; i++) {
+					String prop = list[i].trim();
+					measure.removeScopeProperty(prop);
+				}
+			}
+			Paths.get(targetPath, name+"-"+version+".jar");
+			Paths.get(targetPath, "lib");
+			try {
+				MeasurePackager.packageMeasure(Paths.get(targetPath, name+"-"+version+".jar"),
+						Paths.get(targetPath, "lib"),
+						measure,
+						Paths.get(targetPath, name+"-"+version+".zip"));
+				
+				
+				System.out.println("Successfully Created '" + name + "-" +version + ".zip'" + "\n at "+ targetPath);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+			System.out.println(">> Press Any key to Continue, type 'quit' to exit: ");
+			String input = reader.next();
+			if(input.equalsIgnoreCase("quit")) {
+				doContinue = false;
+				System.out.println(">> Program is quiting ");
+
+			}
+			
+			
 		}
 	}
 }
