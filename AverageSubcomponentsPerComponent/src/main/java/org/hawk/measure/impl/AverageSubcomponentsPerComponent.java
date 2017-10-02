@@ -19,7 +19,6 @@ import org.measure.smm.measure.api.IMeasurement;
 public class AverageSubcomponentsPerComponent extends HawkQueryMeasure  {
 	
 
-	
 	/*	private String queryString_orig =	"var components = Component.all;"
 			+ "if(components.size() = 0) return 0;"
 			+ "var num  = 0;"
@@ -35,7 +34,8 @@ public class AverageSubcomponentsPerComponent extends HawkQueryMeasure  {
 			+ "for(child in c.hawkChildren) {\n"
 			+ "if(child.isTypeOf(Component)) {\n"
 			+ "num = num + 1;\n"
-			+ "} else if(child.hasProperty('hawkChildren')) {\n"
+			+ "} 
+			+" if(child.hasProperty('hawkChildren')) {\n"
 			+ "if(child.hawkChildren.size() > 0) {\n"
 			+ "num = num + getAllComponentsInComponent(child);\n"
 			+ "}\n"
@@ -63,7 +63,7 @@ public class AverageSubcomponentsPerComponent extends HawkQueryMeasure  {
 			+ "for(ch in c.hawkChildren) {\n"
 			+ "if(ch.isTypeOf(Component)) {\n"
 			+ "n = n + 1;\n"
-			+ "} else if(ch.hasProperty('hawkChildren')) {\n"
+			+ "}  if(ch.hasProperty('hawkChildren')) {\n"
 			//+ "if(ch.hawkChildren.size() > 0) {\n"
 			+ "n = n + f(ch);\n"
 			//+ "}\n"
